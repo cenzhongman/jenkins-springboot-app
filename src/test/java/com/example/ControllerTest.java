@@ -15,6 +15,7 @@ public class ControllerTest {
     public void hello() {
         try {
             assertEquals("Hello World!", new Controller().hello());
+            System.out.println("Output is " + "Hello World!");
         } catch (Exception e) {
             fail("Output is not " + "Hello World!");
         }

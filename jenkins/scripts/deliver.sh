@@ -1,27 +1,20 @@
 #!/usr/bin/env bash
 
-echo 'The following Maven command installs your Maven-built Java application'
-echo 'into the local Maven repository, which will ultimately be stored in'
-echo 'Jenkins''s local Maven repository (and the "maven-repository" Docker data'
-echo 'volume).'
+echo '正在打包应用'
 set -x
-mvn clean
-mvn jar:jar install:install help:evaluate -Dexpression=project.name
+mvn clean install
 set +x
 
-echo 'The following complex command extracts the value of the <name/> element'
-echo 'within <project/> of your Java/Maven project''s "pom.xml" file.'
+echo '获得项目名'
 set -x
 NAME=`mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"`
 set +x
 
-echo 'The following complex command behaves similarly to the previous one but'
-echo 'extracts the value of the <version/> element within <project/> instead.'
+echo '获得项目版本'
 set -x
 VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
-echo 'The following command runs and outputs the execution of your Java'
-echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
+echo '正在运行应用'
 set -x
 java -jar target/${NAME}-${VERSION}.jar

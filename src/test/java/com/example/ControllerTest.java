@@ -16,8 +16,10 @@ public class ControllerTest {
 
     @Test
     public void hello() {
+        String hello = new Controller().hello();
+        System.out.println(hello);
         try {
-            assertEquals("Hello World!", new Controller().hello(), outContent.toString());
+            assertEquals("Hello World!", hello, outContent.toString());
         } catch (Exception e) {
             fail("Output is not " + "Hello World!");
         }

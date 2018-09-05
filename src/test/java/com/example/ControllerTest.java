@@ -17,7 +17,6 @@ public class ControllerTest {
     @Test
     public void hello() {
         String hello = new Controller().hello();
-        System.out.println(hello);
         try {
             assertEquals("Hello World!", hello, outContent.toString());
         } catch (Exception e) {

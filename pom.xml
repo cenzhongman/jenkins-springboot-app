@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>biz.datainsights.jenkins</groupId>
-    <artifactId>SpringBootJenkinsDemo</artifactId>
+    <artifactId>jenkins-springboot-app</artifactId>
     <version>1.0.0</version>
     <build>
         <plugins>

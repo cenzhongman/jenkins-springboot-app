@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "正在下载项目"
-git clone http://gitlab.datainsights.biz:1234/cenzhongman/jenkins-springboot-app.git
+git clone https://github.com/cenzhongman/jenkins-springboot-app.git
 
 echo "请在Github/Gitlab创建新的项目并，提供您的git地址"
 read gitPath

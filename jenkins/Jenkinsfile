@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3-alpine'
-            args '-u root --privileged -v /root/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/bin/docker'
+            args '-v /root/.m2:/root/.m2 -v /root/jars:/root/jars'
         }
     }
     stages {
@@ -20,7 +20,6 @@ pipeline {
             steps {
                 sh 'chmod 755 ./jenkins/scripts/deliver.sh'
                 sh './jenkins/scripts/deliver.sh'
-                sh 'docker build jenkins'
             }
         }
     }

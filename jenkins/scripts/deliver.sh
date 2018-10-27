@@ -13,5 +13,6 @@ echo '获得项目版本'
 echo '正在运行应用'
 set -x
 
-cp target/*.jar /root/jars
-#java -jar target/${NAME}-${VERSION}.jar
+
+cp target/*.jar /
+java -jar target/${NAME}-${VERSION}.jar

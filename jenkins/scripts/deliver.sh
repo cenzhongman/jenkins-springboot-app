@@ -1,18 +1,27 @@
-#!/usr/bin/env bash
+#!/usr/bin/sh
 
-set -x
+# 获得项目名
 NAME=`mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"`
-set +x
-echo '获得项目名'
 
-set -x
+# 获得项目版本
 VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
-set +x
-echo '获得项目版本'
 
-echo '正在运行应用'
-set -x
-
+# kill函数
+killNetstat(){
+    processId=`ps -ef | grep ${NAME}-${VERSION}.jar | grep java | awk '{print $2}'`
+    if ["$processId" = ""]
+    then
+        
+    else
+        kill -9 $processId
+}
 
 cp target/*.jar /
-java -jar target/${NAME}-${VERSION}.jar
+
+killNetstat
+
+source /etc/profile
+
+nohup java -jar *.jar &
+
+tail -f nohup.out

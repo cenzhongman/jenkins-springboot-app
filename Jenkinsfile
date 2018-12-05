@@ -6,16 +6,19 @@ pipeline {
         }
     }
     stages {
+
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
+
         stage('Deliver for development') {
             when {
                 branch 'development'
@@ -25,6 +28,20 @@ pipeline {
                 sh './jenkins/deliver-development.sh'
             }
         }
+
+        stage('Deliver for tag') {
+            when {
+                tag 'v1.0'
+            }
+            steps {
+                sh 'chmod 755 ./jenkins/deliver-production.sh'
+                sh 'chmod 755 ./jenkins/kill.sh'
+                sh './jenkins/deliver-production.sh'
+                input message: 'Finished using this Program? (Click "Proceed" to continue)'
+                sh './jenkins/kill.sh'
+            }
+        }
+
         stage('Deploy for production') {
             when {
                 branch 'production'

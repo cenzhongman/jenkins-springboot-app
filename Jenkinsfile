@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'chmod 755 ./scripts/deliver.sh'
-                sh './scripts/deliver.sh'
+                sh 'chmod 755 ./jenkins/deliver.sh'
+                sh './jenkins/deliver.sh'
             }
         }
     }

@@ -21,6 +21,7 @@ pipeline {
                 branch 'development'
             }
             steps {
+                sh 'chmod 755 ./jenkins/deliver-development.sh'
                 sh './jenkins/deliver-development.sh'
                 input message: 'Finished using this Program? (Click "Proceed" to continue)'
             }
@@ -30,6 +31,7 @@ pipeline {
                 branch 'production'
             }
             steps {
+                sh 'chmod 755 ./jenkins/deliver-production.sh'
                 sh './jenkins/deliver-production.sh'
                 input message: 'Finished using this Program? (Click "Proceed" to continue)'
             }

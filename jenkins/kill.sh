@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-ll .pidFile
-cat .pidFile
+echo cat .pidFile
 kill $(cat .pidFile)

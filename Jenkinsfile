@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3-alpine'
-            args '-v maven-repository:/root/.m2 /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 --name jenkins-springboot-app'
+            args '-v maven-repository:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 --name jenkins-springboot-app'
         }
     }
     stages {
@@ -18,9 +18,28 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'docker stop jenkins-springboot-app'
                 sh 'chmod 755 ./jenkins/deliver.sh'
                 sh './jenkins/deliver.sh'
+            }
+        }
+        stage('Deliver for development') {
+            when {
+                branch 'development'
+            }
+            steps {
+                sh './jenkins/deliver-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Deploy for production') {
+            when {
+                branch 'production'
+            }
+            steps {
+                sh './jenkins/deliver-production.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }

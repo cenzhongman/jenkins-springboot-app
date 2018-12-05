@@ -10,11 +10,6 @@ set -x
 VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
-# 杀掉历史进程
-docker stop jenkins-springboot-app
-
 cp target/*.jar /
-
 # 开启新的进程
-nohup java -jar target/${NAME}-${VERSION}.jar &
-echo '运行成功'
+java -jar target/${NAME}-${VERSION}.jar

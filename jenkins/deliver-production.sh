@@ -10,8 +10,8 @@ set -x
 VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
-ps -ef | grep target/${NAME}-${VERSION}.jar |grep -v grep| awk '{print $2}' > .pidFile
-
 cp target/*.jar /
 # 开启新的进程
 nohup java -jar target/${NAME}-${VERSION}.jar &
+sleep 1
+echo $! > .pidFile

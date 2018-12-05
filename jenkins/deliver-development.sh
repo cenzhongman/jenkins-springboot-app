@@ -14,4 +14,4 @@ ps -ef | grep target/${NAME}-${VERSION}.jar |grep -v grep| awk '{print $2}' > .p
 
 cp target/*.jar /
 # 开启新的进程
-nohup java -jar target/${NAME}-${VERSION}.jar &
+java -jar target/${NAME}-${VERSION}.jar

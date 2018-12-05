@@ -24,6 +24,7 @@ pipeline {
                 sh 'chmod 755 ./jenkins/deliver-development.sh'
                 sh './jenkins/deliver-development.sh'
                 input message: 'Finished using this Program? (Click "Proceed" to continue)'
+                sh './jenkins/kill.sh'
             }
         }
         stage('Deploy for production') {

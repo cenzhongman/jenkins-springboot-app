@@ -28,8 +28,7 @@ pipeline {
             }
             steps {
                 sh './jenkins/deliver-development.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                input message: 'Finished using this Program? (Click "Proceed" to continue)'
             }
         }
         stage('Deploy for production') {
@@ -38,8 +37,7 @@ pipeline {
             }
             steps {
                 sh './jenkins/deliver-production.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                input message: 'Finished using this Program? (Click "Proceed" to continue)'
             }
         }
     }

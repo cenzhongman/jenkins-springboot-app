@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'docekr stop jenkins-springboot-app'
+                sh 'docker stop jenkins-springboot-app'
                 sh 'chmod 755 ./jenkins/deliver.sh'
                 sh './jenkins/deliver.sh'
             }

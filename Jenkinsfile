@@ -16,12 +16,6 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Deliver') {
-            steps {
-                sh 'chmod 755 ./jenkins/deliver.sh'
-                sh './jenkins/deliver.sh'
-            }
-        }
         stage('Deliver for development') {
             when {
                 branch 'development'

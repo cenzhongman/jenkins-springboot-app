@@ -12,11 +12,11 @@ set +x
 
 set -x
 # 杀掉历史进程
-
-ps -ef | grep target/${NAME}-${VERSION}.jar |grep -v grep| awk '{print $2}' | xargs kill -9
+docker stop jenkins-springboot-app
 set +x
 
 cp target/*.jar /
 
 # 开启新的进程
-java -jar target/${NAME}-${VERSION}.jar
+nohup java -jar target/${NAME}-${VERSION}.jar &
+echo '运行成功'

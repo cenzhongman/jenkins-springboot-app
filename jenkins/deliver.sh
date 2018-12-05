@@ -12,6 +12,7 @@ set +x
 
 set -x
 # 杀掉历史进程
+
 ps -ef | grep target/${NAME}-${VERSION}.jar |grep -v grep| awk '{print $2}' | xargs kill -9
 set +x
 

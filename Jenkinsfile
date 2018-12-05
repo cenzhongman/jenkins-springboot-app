@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'pwd'
+                sh 'chmod 755 ./scripts/deliver.sh'
+                sh './scripts/deliver.sh'
             }
         }
     }

@@ -29,19 +29,6 @@ pipeline {
             }
         }
 
-        stage('Deliver for tag') {
-            when {
-                tag 'v1.0'
-            }
-            steps {
-                sh 'chmod 755 ./jenkins/deliver-production.sh'
-                sh 'chmod 755 ./jenkins/kill.sh'
-                sh './jenkins/deliver-production.sh'
-                input message: 'Finished using this Program? (Click "Proceed" to continue)'
-                sh './jenkins/kill.sh'
-            }
-        }
-
         stage('Deploy for production') {
             when {
                 branch 'production'
